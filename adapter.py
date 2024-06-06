@@ -2,6 +2,8 @@ import time, linuxcnc, datetime
 from data_item import Event, SimpleCondition, Sample
 from mtconnect_adapter import Adapter
 
+DELAY = .05
+
 class pocketNCAdapter(object):
     
     def __init__(self, host, port):
@@ -241,6 +243,7 @@ class pocketNCAdapter(object):
                 ylt1=datetime.datetime.now() #initialized
                 at1=datetime.datetime.now() #initialized
                 ct1=datetime.datetime.now() #initialized
+            time.sleep(DELAY)
 
 if __name__ == "__main__":
     print("Starting Up")
