@@ -243,6 +243,6 @@ class pocketNCAdapter(object):
                 ct1=datetime.datetime.now() #initialized
 
 if __name__ == "__main__":
-    print "Starting Up"
+    print("Starting Up")
     pocketNcadapter = pocketNCAdapter('localhost',7878)
     

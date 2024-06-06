@@ -12,7 +12,7 @@
    See the License for the specific language governing permissions and
    limitations under the License."""
     
-from SocketServer import ThreadingMixIn, TCPServer, BaseRequestHandler
+from socketserver import ThreadingMixIn, TCPServer, BaseRequestHandler
 import threading
 import socket
 import uuid
@@ -42,7 +42,7 @@ class Adapter(ThreadingMixIn, TCPServer):
         self.server_activate()
         self._server_thread = threading.Thread(target = self.serve_forever)
         self._server_thread.setDaemon(True)
-        print "Server started, waiting for connections on " + str(self.server_address)
+        print("Server started, waiting for connections on " + str(self.server_address))
         self._server_thread.start()
 
     def stop(self):
@@ -55,7 +55,7 @@ class Adapter(ThreadingMixIn, TCPServer):
         self._server_thread.join()
 
     def finish_request(self, request, client_address):
-        print "Connected to " + str(client_address)
+        print("Connected to " + str(client_address))
         self._lock.acquire()
         self._clients[client_address] = request
         self._lock.release()
@@ -84,13 +84,13 @@ class Adapter(ThreadingMixIn, TCPServer):
                 else:
                     break
         except:
-            print "Exception in heartbeat thread"
+            print("Exception in heartbeat thread")
 
-        print "Heartbeat thread stopped"
+        print("Heartbeat thread stopped")
 
 
     def remove_client(self, client_address):
-        print "Removing " + str(client_address)
+        print("Removing " + str(client_address))
         try:
             self._lock.acquire()
             if client_address in self._clients:
@@ -98,7 +98,7 @@ class Adapter(ThreadingMixIn, TCPServer):
                 del self._clients[client_address]
                 socket.shutdown(socket.SHUT_RDWR)
         except:
-            print "Exception closing socket for " + str(client_address)
+            print("Exception closing socket for " + str(client_address))
         finally:
             self._lock.release()
 
@@ -154,8 +154,8 @@ class Adapter(ThreadingMixIn, TCPServer):
                 self._lock.release()
             if socket:
                 socket.send(line)
-        except Exception, ex:
-            print "Exception occurred in send_to_client, removing client" + str(ex)
+        except Exception as ex:
+            print("Exception occurred in send_to_client, removing client" + str(ex))
             self.remove_client(client)
 
 

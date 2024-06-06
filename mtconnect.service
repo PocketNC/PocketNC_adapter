@@ -1,0 +1,12 @@
+[Unit]
+Description=Web server providing interface to linuxcnc via web sockets
+After=PocketNC.service
+
+[Service]
+ExecStart=/home/pocketnc/PocketNC_adapter/start.sh
+User=pocketnc
+TimeoutStopSec=5
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target

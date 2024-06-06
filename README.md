@@ -13,13 +13,7 @@ Download the files in the beaglebone black Debian OS of PocketNC. update the por
 
 Once the information in the "adapter.py" file is updated, this python script needs to be used as a service so that the adapter is active everytime the PocketNC is powered on. In order to enable this enter the following code in the beaglebone terminal:
 
-`sudo nano .\bashrc`
-
-In the .bashrc shell script, goto the end of the file and add the following line:
-
-`nohup python /home/pocketnc/adapter.py > /dev/null 2>&1 &`
-
-assuming that the location of the "adapter.py" file is "/home/pocketnc/adapter.py". Edit this line appropriately.
+`sudo systemctl enable /home/pocketnc/PocketNC_adapter/mtconnect.service`
 
 Next time when the PocketNC is restarted, the adapter will be running as a service behind the scenes.
 
