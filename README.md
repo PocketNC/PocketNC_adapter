@@ -1,6 +1,19 @@
 # PocketNC_adapter
 An implementation of the PocketNC adapter.
 
+Quickstart
+----------
+
+ssh to the PocketNC.
+
+```
+git clone https://github.com/PocketNC/PocketNC_adapter
+sudo systemctl enable /home/pocketnc/PocketNC_adapter/mtconnect.service
+sudo reboot
+```
+
+This will start the MTConnect server on port 7878 when the Pocket NC powers back up.
+
 Introduction
 ------------
 A python adapter "adapter.py" for PocketNC is shared which provides an interface for the PocketNC to become MTConnect compliant. The adapter allows the use of MTConnect agent to make the PocketNC MTconnect compliant. The steps to install and implement MTConnect agent can be found at https://github.com/mtconnect/cppagent. This adapter was developed and tested on a PocketNC v1.
